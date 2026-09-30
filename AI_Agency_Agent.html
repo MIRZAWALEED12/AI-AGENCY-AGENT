@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Agency Agent</title>
+<style>
+body{margin:0;font-family:Arial,sans-serif;background:#0f172a;color:#e2e8f0}
+.container{max-width:1000px;margin:auto;padding:20px}
+.hero,.card,.panel{background:#1e293b;border:1px solid #334155;border-radius:14px;padding:18px;margin-bottom:16px}
+h1{margin:0 0 8px}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.num{font-size:28px;font-weight:bold;margin-top:8px}
+.panels{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+label{display:block;margin:10px 0 5px}input,textarea{width:100%;padding:10px;box-sizing:border-box;border-radius:8px;border:1px solid #475569;background:#0f172a;color:white}
+textarea{min-height:90px}button{margin-top:12px;padding:11px 16px;border:0;border-radius:8px;background:#22c55e;font-weight:bold}
+.log{background:#020617;padding:14px;border-radius:8px;white-space:pre-wrap;color:#86efac;min-height:100px}
+@media(max-width:650px){.grid,.panels{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="hero"><h1>AI Agency Agent</h1><p>Lead Discovery → Quote → Order → Build → Delivery → Payment</p></div>
+<div class="grid">
+<div class="card">Leads<div class="num" id="leads">0</div></div>
+<div class="card">Open Orders<div class="num" id="orders">0</div></div>
+<div class="card">Quoted Value<div class="num">$0</div></div>
+<div class="card">Completed<div class="num" id="completed">0</div></div>
+</div>
+<div class="panels">
+<div class="panel">
+<h2>Find Customers</h2>
+<label>Niche</label><input id="niche" placeholder="e.g. pharmacy, gaming shop">
+<label>Location</label><input id="location" placeholder="e.g. Pakistan">
+<button onclick="findCustomers()">Find Customers</button>
+</div>
+<div class="panel">
+<h2>New Order</h2>
+<label>Customer</label><input id="customer" placeholder="Customer name">
+<label>Service</label><input id="service" placeholder="Website / App / AI Agent">
+<label>Budget</label><input id="budget" placeholder="e.g. 500">
+<label>Requirements</label><textarea id="requirements" placeholder="What does the customer want?"></textarea>
+<button onclick="runAgent()">Run Agency Agent</button>
+</div>
+</div>
+<div class="panel"><h2>Agent Workflow</h2><div class="log" id="log">Ready. Enter an order or search for customers.</div></div>
+<div class="panel"><b>Note:</b> This is the working front-end dashboard. Real lead search, AI building, deployment, customer messaging and payment connections still need to be connected.</div>
+</div>
+<script>
+let leads=0,orders=0;
+function findCustomers(){
+let n=document.getElementById('niche').value||'businesses',l=document.getElementById('location').value||'online';
+leads+=5;document.getElementById('leads').textContent=leads;
+document.getElementById('log').textContent='✓ Lead discovery started\n✓ Niche: '+n+'\n✓ Location: '+l+'\n✓ Demo found 5 potential leads\n→ Connect a real lead source for live customers.';
+}
+function runAgent(){
+let c=document.getElementById('customer').value||'New Customer';
+let s=document.getElementById('service').value||'Website';
+let b=document.getElementById('budget').value||'Not specified';
+let r=document.getElementById('requirements').value||'No requirements entered';
+orders++;document.getElementById('orders').textContent=orders;
+document.getElementById('log').textContent='✓ Order received\nCustomer: '+c+'\nService: '+s+'\nBudget: '+b+'\nRequirements: '+r+'\n✓ Qualification complete\n✓ Quote workflow ready\n✓ Build brief created\n→ Connect AI builder + deployment\n→ Connect payment provider.';
+}
+</script>
+</body>
+</html>
